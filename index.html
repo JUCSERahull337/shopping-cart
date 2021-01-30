@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Shopping Cart</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+   <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+   <section>
+      <div class="container">
+         <div class="cart">
+            <div class="col-md-12 col-lg-10 mx-auto">
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item">
+                        <img src="images/product-1.png" alt="">
+                        <h5>iPhone 11 128GB Black</h5>
+                     </div>
+
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default" id="minusBtn"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" value="1" id="iphoneValue">
+                           <button class="btn btn-default" id="plusBtn"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <h5>$<span id="iphonePrice">1219</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+                     <div class="col-md-7 center-item mx-auto">
+                        <img src="images/product-2.png" alt="">
+                        <h5>iPhone 11 Silicone Case - Black</h5>
+                     </div>
+                     <div class="col-md-5 center-item">
+                        <div class="input-group number-spinner">
+                           <button class="btn btn-default" id="iphoneCoverMinusBtn"><i class="fas fa-minus"></i></button>
+                           <input type="text" class="form-control text-center" value="1"  id="iphoneCoverValue">
+                           <button class="btn btn-default" id="iphoneCoverBtn"><i class="fas fa-plus"></i></button>
+
+                        </div>
+                        <h5>$<span id="iphoneCoverPrice">59</span></h5>
+                        <img src="images/remove.png" alt="" class="remove-item">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="cart-item">
+                  <div class="row">
+
+                     <div class="col-md-8">
+                        <h5>Subtotal: </h5>
+                        <h5>Tax:</h5>
+                        <h5>Total:</h5>
+                     </div>
+
+                     <div class="col-md-4 status">
+                        <h5>$<span id="subtotal">1,278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$<span id="total">1,278</span></h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-12 pt-4 pb-4">
+                  <button type="button" class="btn btn-success check-out" id="checkOut">Check Out</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+
+   <script>
+      var plusButton= document.getElementById('plusBtn');
+      var iphoneValuePlusCount=0;
+
+      // Capture + & increment while clicked
+      plusButton.addEventListener('click', function(event){
+         console.log('button Clicked');
+         var iphoneValue= document.getElementById('iphoneValue').value;
+         //console.log('value', iphoneValue);
+         var iphoneValueNumber= parseFloat(iphoneValue);
+         //console.log(iphoneValueNumber);
+         iphoneValuePlusCount=iphoneValueNumber+1;
+         console.log(iphoneValuePlusCount);
+         document.getElementById('iphoneValue').value=iphoneValuePlusCount;
+         
+
+         //Capture the i-Phone balance & Update balance when + clicked
+         var iphonePrice= document.getElementById('iphonePrice').innerText;
+         var iphonePriceNumber= parseFloat(iphonePrice);
+         console.log(iphonePriceNumber);
+
+         var updatePrice= iphonePriceNumber+1219;
+         console.log('updated price',updatePrice);
+         document.getElementById('iphonePrice').innerText=updatePrice;
+
+
+         //Capture total balance & update
+
+
+
+      })
+
+      //Capture - & increment while clicked
+
+      var minusButton= document.getElementById('minusBtn');
+      var iphoneValueMinusCount=0;
+
+      // Capture - & decrement while clicked
+      minusButton.addEventListener('click', function(event){
+         console.log('button Clicked');
+         var iphoneValue= document.getElementById('iphoneValue').value;
+         //console.log('value', iphoneValue);
+         var iphoneValueNumber= parseFloat(iphoneValue);
+         //console.log(iphoneValueNumber);
+         if(iphoneValueNumber>0){
+            iphoneValueMinusCount=iphoneValueNumber-1;
+            console.log(iphoneValueMinusCount);
+            document.getElementById('iphoneValue').value=iphoneValueMinusCount;
+
+            //Capture the balance & Update balance when - clicked
+            var iphonePrice= document.getElementById('iphonePrice').innerText;
+            var iphonePriceNumber= parseFloat(iphonePrice);
+            console.log(iphonePriceNumber);
+
+            var updateMinusPrice= iphonePriceNumber-1219;
+            console.log('updated price',updateMinusPrice);
+            document.getElementById('iphonePrice').innerText=updateMinusPrice;
+         }
+         else{
+            document.getElementById("minusBtn").value = '';
+         }   
+        
+      })
+
+      //I-phone Cover + capture & update
+      var iphoneCoverBtn= document.getElementById('iphoneCoverBtn');
+      var iphoneCoverPlusCount=0;
+      iphoneCoverBtn.addEventListener('click', function(event){
+
+         console.log('button Clicked');
+         var iphoneCoverValue= document.getElementById('iphoneCoverValue').value;
+         //console.log('value', iphoneValue);
+         var iphoneCoverValueNumber= parseFloat(iphoneCoverValue);
+         //console.log(iphoneValueNumber);
+         iphoneCoverPlusCount=iphoneCoverValueNumber+1;
+         console.log(iphoneCoverPlusCount);
+         document.getElementById('iphoneCoverValue').value=iphoneCoverPlusCount;
+         
+
+         //Capture the i-Phone cover balance & Update balance when + clicked
+         var iphoneCoverPrice= document.getElementById('iphoneCoverPrice').innerText;
+         var iphoneCoverPriceNumber= parseFloat(iphoneCoverPrice);
+         console.log(iphoneCoverPriceNumber);
+
+         var updateCoverPrice= iphoneCoverPriceNumber+59;
+         console.log('updated price',updateCoverPrice);
+         document.getElementById('iphoneCoverPrice').innerText=updateCoverPrice;
+
+      })
+       //I-phone Cover - capture & update
+       var iphoneCoverMinusBtn= document.getElementById('iphoneCoverMinusBtn');
+       var iphoneCoverMinusCount=0;
+       iphoneCoverMinusBtn.addEventListener('click', function(event){
+         console.log('button clicked');
+         var iphoneCoverValue= document.getElementById('iphoneCoverValue').value;
+         //console.log('value', iphoneValue);
+         var iphoneCoverValueNumber= parseFloat(iphoneCoverValue);
+
+         if(iphoneCoverValueNumber>0){
+            iphoneCoverMinusCount=iphoneCoverValueNumber-1;
+            console.log(iphoneCoverMinusCount);
+            document.getElementById('iphoneCoverValue').value=iphoneCoverMinusCount;
+
+            //Capture the i-Phone cover balance & Update balance when - clicked
+            var iphoneCoverPrice= document.getElementById('iphoneCoverPrice').innerText;
+            var iphoneCoverPriceNumber= parseFloat(iphoneCoverPrice);
+            console.log(iphoneCoverPriceNumber);
+
+            var updateCoverMinusPrice= iphoneCoverPriceNumber-59;
+            console.log('updated price',updateCoverMinusPrice);
+            document.getElementById('iphoneCoverPrice').innerText=updateCoverMinusPrice;
+         }
+         else{
+            document.getElementById("iphoneCoverMinusBtn").value = '';
+         }
+
+       })
+
+      // var subtotal= document.getElementById('subtotal').innerText;
+      // var subtotalNumber= parseFloat(subtotal);
+      var checkBtn= document.getElementById('checkOut');
+      checkBtn.addEventListener('click', function(event){
+
+      var UpdatedIphonePrice= document.getElementById('iphonePrice').innerText;
+      var UpdatedIphonePriceNumber= parseFloat(UpdatedIphonePrice);
+      console.log('iphone', UpdatedIphonePriceNumber);
+      var UpdatedIphoneCoverPrice= document.getElementById('iphoneCoverPrice').innerText;
+      var UpdatedIphoneCoverPriceNumber= parseFloat(UpdatedIphoneCoverPrice);
+      console.log('cover', UpdatedIphoneCoverPriceNumber);
+
+      var subtotalNumberUpdated= UpdatedIphonePriceNumber + UpdatedIphoneCoverPriceNumber;
+      console.log(subtotalNumberUpdated);
+      document.getElementById('subtotal').innerText= subtotalNumberUpdated;
+      document.getElementById('total').innerText= subtotalNumberUpdated;
+
+      })
+
+     
+
+
+      
+
+
+   </script>
+</body>
+
+</html>
